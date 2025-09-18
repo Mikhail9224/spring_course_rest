@@ -25,7 +25,7 @@ public class MyConfig {
         try {
             dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
             dataSource.setJdbcUrl(
-                    "jdbc:mysql://localhost:3306/my_db?useSSL=false&amp;serverTimezone=UTC");
+                    "jdbc:mysql://localhost:3306/my_db?useSSL=false");
             dataSource.setUser("bestuser");
             dataSource.setPassword("bestuser");
         } catch (PropertyVetoException e) {
@@ -37,7 +37,7 @@ public class MyConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource());
-        sessionFactoryBean.setPackagesToScan("com.maxmelnic.spring.rest.entity");
+        sessionFactoryBean.setPackagesToScan("com.maxmelnic.spring.rest");
         Properties props = new Properties();
         props.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         props.setProperty("hibernate.show_sql", "true");
@@ -51,6 +51,7 @@ public class MyConfig {
         transactionManager.setSessionFactory(sessionFactory().getObject());
         return transactionManager;
     }
+
 
 
 }
